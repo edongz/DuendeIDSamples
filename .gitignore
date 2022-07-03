@@ -210,3 +210,4 @@ Users.db
 *.db
 *.db-shm
 *.db-wal
+/IdentityServer/v6/Quickstarts/5_AspNetIdentity/src/IdentityServerAspNetIdentity/logs
