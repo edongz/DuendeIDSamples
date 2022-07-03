@@ -11,7 +11,6 @@ public class InputModel
 
 	[Display(Name = "用户名")]
 	[Required(ErrorMessage = "用户名不能为空")]
-
 	public string Username { get; set; }
 
 	[Required]
