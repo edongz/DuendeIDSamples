@@ -211,3 +211,5 @@ Users.db
 *.db-shm
 *.db-wal
 /IdentityServer/v6/Quickstarts/5_AspNetIdentity/src/IdentityServerAspNetIdentity/logs
+/IdentityServer/v6/Quickstarts/5_AspNetIdentity/src/IdentityServerAspNetIdentity/wwwroot/lib/bootstrap
+/IdentityServer/v6/Quickstarts/5_AspNetIdentity/src/IdentityServerAspNetIdentity/wwwroot/lib/bootstrap_4back

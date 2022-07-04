@@ -1,12 +1,15 @@
 {
-  "profiles": {
-    "SelfHost": {
+  "profiles":
+  {
+    "SelfHost":
+    {
       "commandName": "Project",
       "launchBrowser": true,
-      "environmentVariables": {
+      "environmentVariables":
+      {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:5001"
+      "applicationUrl": "https://localhost:5001/Account/Register"
     }
   }
 }
