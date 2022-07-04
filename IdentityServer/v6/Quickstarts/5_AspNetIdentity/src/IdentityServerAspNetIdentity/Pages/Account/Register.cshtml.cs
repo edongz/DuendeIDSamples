@@ -17,7 +17,7 @@ using Microsoft.AspNetCore.WebUtilities;
 namespace IdentityServerHost.Pages.Register;
 
 [Authorize]
-public class Index : PageModel
+public class RegisterModel : PageModel
 {
 	private readonly SignInManager<ApplicationUser> _signInManager;
 	private readonly UserManager<ApplicationUser> _userManager;
@@ -26,7 +26,7 @@ public class Index : PageModel
 	private readonly ILogger<Index> _logger;
 	private readonly IEmailSender _emailSender;
 
-	public Index(
+	public RegisterModel(
 			UserManager<ApplicationUser> userManager,
 			IUserStore<ApplicationUser> userStore,
 			SignInManager<ApplicationUser> signInManager,
