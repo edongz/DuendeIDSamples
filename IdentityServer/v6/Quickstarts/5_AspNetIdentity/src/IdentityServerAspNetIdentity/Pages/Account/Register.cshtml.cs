@@ -58,17 +58,22 @@ namespace IdentityServerHost.Pages.Register
 		{
 			[Required]
 			[DataType(DataType.Text)]
-			[Display(Name = "Full name")]
-			public string Name { get; set; }
+			[Display(Name = "登录名")]
+			public string NormalizedUserName { get; set; }
 
 			[Required]
-			[Display(Name = "Birth Date")]
+			[DataType(DataType.Text)]
+			[Display(Name = "真实姓名")]
+			public string UserName { get; set; }
+
+			[Required]
+			[Display(Name = "生日")]
 			[DataType(DataType.Date)]
 			public DateTime DOB { get; set; }
 
 			[Required]
 			[EmailAddress]
-			[Display(Name = "Email")]
+			[Display(Name = "电子邮件")]
 			public string Email { get; set; }
 
 			[Required]
@@ -83,7 +88,6 @@ namespace IdentityServerHost.Pages.Register
 			public string ConfirmPassword { get; set; }
 		}
 
-
 		public async Task OnGetAsync(string returnUrl = null)
 		{
 			ReturnUrl = returnUrl;
@@ -97,8 +101,6 @@ namespace IdentityServerHost.Pages.Register
 			if (ModelState.IsValid)
 			{
 				var user = CreateUser();
-
-				user.Name = Input.Name;
 				user.DOB = Input.DOB;
 
 				await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
