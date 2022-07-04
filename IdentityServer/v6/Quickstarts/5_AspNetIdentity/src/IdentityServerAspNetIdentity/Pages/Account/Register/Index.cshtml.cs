@@ -17,20 +17,20 @@ using Microsoft.AspNetCore.WebUtilities;
 namespace IdentityServerHost.Pages.Register;
 
 [Authorize]
-public class RegisterModel : PageModel
+public class Index : PageModel
 {
 	private readonly SignInManager<ApplicationUser> _signInManager;
 	private readonly UserManager<ApplicationUser> _userManager;
 	private readonly IUserStore<ApplicationUser> _userStore;
 	private readonly IUserEmailStore<ApplicationUser> _emailStore;
-	private readonly ILogger<RegisterModel> _logger;
+	private readonly ILogger<Index> _logger;
 	private readonly IEmailSender _emailSender;
 
-	public RegisterModel(
+	public Index(
 			UserManager<ApplicationUser> userManager,
 			IUserStore<ApplicationUser> userStore,
 			SignInManager<ApplicationUser> signInManager,
-			ILogger<RegisterModel> logger,
+			ILogger<Index> logger,
 			IEmailSender emailSender)
 	{
 		_userManager = userManager;
