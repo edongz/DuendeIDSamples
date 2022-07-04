@@ -24,7 +24,6 @@ public class RegisterModel : PageModel
 	private readonly IUserStore<ApplicationUser> _userStore;
 	//private readonly IUserEmailStore<ApplicationUser> _emailStore;
 	private readonly ILogger<Index> _logger;
-	private readonly IEmailSender _emailSender;
 
 	public RegisterModel(
 			UserManager<ApplicationUser> userManager,
@@ -63,7 +62,7 @@ public class RegisterModel : PageModel
 		[Display(Name = "真实姓名")]
 		public string UserName { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "生日不能为空")]
 		[Display(Name = "生日")]
 		[DataType(DataType.Date)]
 		public DateTime DOB { get; set; }
@@ -100,11 +99,12 @@ public class RegisterModel : PageModel
 			var user = CreateUser();
 			user.DOB = Input.DOB;
 			user.Email = Input.Email;
-			user.NormalizedUserName = Input.NormalizedUserName;
-			user.UserName = Input.UserName;
+			//user.NormalizedUserName = Input.NormalizedUserName;
+			//user.UserName = Input.UserName;
 
-			//await _userStore.SetNormalizedUserNameAsync(user, Input.NormalizedUserName, CancellationToken.None);
-			//await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
+			await _userStore.SetUserNameAsync(user, "中文", CancellationToken.None);
+			//await _userStore.SetNormalizedUserNameAsync(user, "wangwang", CancellationToken.None);
+
 			//await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
 			var result = await _userManager.CreateAsync(user, Input.Password);
 

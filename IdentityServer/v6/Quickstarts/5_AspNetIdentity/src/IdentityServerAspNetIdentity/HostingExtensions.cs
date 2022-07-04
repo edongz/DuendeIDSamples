@@ -37,9 +37,13 @@ internal static class HostingExtensions
 			options.Lockout.AllowedForNewUsers = true;
 
 			// User settings.
-			options.User.AllowedUserNameCharacters =
-			"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-			options.User.RequireUniqueEmail = false;
+
+			//options.User.AllowedUserNameCharacters =			"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+			options.User.AllowedUserNameCharacters = null;
+			options.User.RequireUniqueEmail = true;
+
+			options.SignIn.RequireConfirmedEmail = false;
+			options.SignIn.RequireConfirmedPhoneNumber = false;
 		});
 
 		builder.Services
