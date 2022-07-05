@@ -52,10 +52,6 @@ public class RegisterModel : PageModel
 
 	public class InputModel
 	{
-		[Required]
-		[DataType(DataType.Text)]
-		[Display(Name = "登录名")]
-		public string NormalizedUserName { get; set; }
 
 		[Required]
 		[DataType(DataType.Text)]
@@ -99,11 +95,12 @@ public class RegisterModel : PageModel
 			var user = CreateUser();
 			user.DOB = Input.DOB;
 			user.Email = Input.Email;
-			//user.NormalizedUserName = Input.NormalizedUserName;
-			//user.UserName = Input.UserName;
 
-			await _userStore.SetUserNameAsync(user, "中文", CancellationToken.None);
-			//await _userStore.SetNormalizedUserNameAsync(user, "wangwang", CancellationToken.None);
+			user.UserName = Input.UserName;
+			user.NormalizedUserName = "norname";            //这个没有用
+																											//await _userStore.SetUserNameAsync(user, "中文", CancellationToken.None);
+																											//await _userStore.SetNormalizedUserNameAsync(user, "wangwang", CancellationToken.None);
+																											//await _userManager.UpdateNormalizedUserNameAsync(user);
 
 			//await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
 			var result = await _userManager.CreateAsync(user, Input.Password);
@@ -113,6 +110,7 @@ public class RegisterModel : PageModel
 				_logger.LogInformation("User created a new account with password.");
 
 				var userId = await _userManager.GetUserIdAsync(user);
+
 				//var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 				//code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
 				//var callbackUrl = Url.Page(
