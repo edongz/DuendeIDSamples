@@ -1,4 +1,5 @@
-﻿using Duende.IdentityServer;
+﻿using Duende.IdentityServer.EntityFramework.DbContexts;
+using Duende.IdentityServer.EntityFramework.Mappers;
 using IdentityServerAspNetIdentity.Data;
 using IdentityServerHost.Models;
 using Microsoft.AspNetCore.Identity;
@@ -11,6 +12,7 @@ internal static class HostingExtensions
 {
 	public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
 	{
+		string migrationsAssembly = typeof(Program).Assembly.GetName().Name;
 		builder.Services.AddRazorPages();
 
 		string connectionString = builder.Configuration.GetConnectionString("sql_server_172");
@@ -57,9 +59,16 @@ internal static class HostingExtensions
 					// see https://docs.duendesoftware.com/identityserver/v6/fundamentals/resources/
 					options.EmitStaticAudienceClaim = true;
 				})
-				.AddInMemoryIdentityResources(Config.IdentityResources)
-				.AddInMemoryApiScopes(Config.ApiScopes)
-				.AddInMemoryClients(Config.Clients)
+			.AddConfigurationStore(options =>
+			{
+				options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
+								sql => sql.MigrationsAssembly(migrationsAssembly));
+			})
+				.AddOperationalStore(options =>
+				{
+					options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
+									sql => sql.MigrationsAssembly(migrationsAssembly));
+				})
 				.AddAspNetIdentity<ApplicationUser>();
 
 		//builder.Services.AddAuthentication()

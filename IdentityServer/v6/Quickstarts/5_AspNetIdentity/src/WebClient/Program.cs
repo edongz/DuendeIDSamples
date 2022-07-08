@@ -18,7 +18,7 @@ builder.Services.AddAuthentication(options =>
 		{
 			options.Authority = "https://localhost:5001";
 
-			options.ClientId = "web";
+			options.ClientId = "mvc.code";
 			options.ClientSecret = "secret";
 			options.ResponseType = "code";
 
@@ -28,7 +28,7 @@ builder.Services.AddAuthentication(options =>
 			options.Scope.Add("openid");
 			options.Scope.Add("profile");
 			options.Scope.Add("offline_access");
-			options.Scope.Add("api1");
+			//options.Scope.Add("api1");
 
 			options.GetClaimsFromUserInfoEndpoint = true;
 		});
