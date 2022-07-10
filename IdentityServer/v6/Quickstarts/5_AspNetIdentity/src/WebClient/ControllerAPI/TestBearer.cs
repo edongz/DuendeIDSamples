@@ -7,7 +7,6 @@ namespace WebClient.ControllerAPI
 	[Route("api/[controller]")]
 	[ApiController]
 	[Authorize(AuthenticationSchemes = "Cookies,Bearer")]
-
 	public class TestBearer : ControllerBase
 	{
 		// /api/TestBearer/FindMaterialCode?MaterialCode=HDS69540M40

@@ -31,9 +31,16 @@ builder.Services.AddAuthentication(options =>
 			//options.Scope.Add("api1");
 
 			options.GetClaimsFromUserInfoEndpoint = true;
+		})
+		.AddJwtBearer("Bearer", options =>
+		{
+			options.Authority = "https://localhost:5001";
+			options.Audience = "urn:lctAdmin";                //表：ApiResources，字段Name
+			options.TokenValidationParameters.ValidateAudience = true;
+			options.TokenValidationParameters.ClockSkew = TimeSpan.FromSeconds(5);
 		});
 
-builder.Services.AddMvc();
+//builder.Services.AddMvc();
 //自定义claim（声明）转换......开始
 builder.Services.AddTransient<IClaimsTransformation, MyClaimsTransformation>();
 //自定义claim（声明）转换......结束
@@ -54,7 +61,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-//app.MapControllers();
+app.MapControllers();
 app.MapRazorPages().RequireAuthorization();
 
 app.Run();
