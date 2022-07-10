@@ -33,6 +33,10 @@ builder.Services.AddAuthentication(options =>
 			options.GetClaimsFromUserInfoEndpoint = true;
 		});
 
+builder.Services.AddMvc();
+//自定义claim（声明）转换......开始
+builder.Services.AddTransient<IClaimsTransformation, MyClaimsTransformation>();
+//自定义claim（声明）转换......结束
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -50,6 +54,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+//app.MapControllers();
 app.MapRazorPages().RequireAuthorization();
 
 app.Run();

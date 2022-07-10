@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.WebUtilities;
 
 namespace IdentityServerHost.Pages.Register;
 
-//[Authorize]
+[Authorize(Roles = "Administrator, 机密报表")]
 public class RegisterModel : PageModel
 {
 	private readonly SignInManager<ApplicationUser> _signInManager;
