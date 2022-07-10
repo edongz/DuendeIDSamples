@@ -52,7 +52,6 @@ public class RegisterModel : PageModel
 
 	public class InputModel
 	{
-
 		[Required]
 		[DataType(DataType.Text)]
 		[Display(Name = "真实姓名")]
@@ -97,10 +96,10 @@ public class RegisterModel : PageModel
 			user.Email = Input.Email;
 
 			user.UserName = Input.UserName;
-			user.NormalizedUserName = "norname";            //这个没有用
-																											//await _userStore.SetUserNameAsync(user, "中文", CancellationToken.None);
-																											//await _userStore.SetNormalizedUserNameAsync(user, "wangwang", CancellationToken.None);
-																											//await _userManager.UpdateNormalizedUserNameAsync(user);
+			//user.NormalizedUserName = "norname";            //这个没有用
+			//await _userStore.SetUserNameAsync(user, "中文", CancellationToken.None);
+			//await _userStore.SetNormalizedUserNameAsync(user, "wangwang", CancellationToken.None);
+			//await _userManager.UpdateNormalizedUserNameAsync(user);
 
 			//await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
 			var result = await _userManager.CreateAsync(user, Input.Password);
