@@ -16,9 +16,11 @@ namespace IdentityServerAspNetIdentity.Pages
 
     public IList<ApplicationUser>? LstUsers { get; set; }
 
+    //打开时获取页面数据
     public async Task OnGetAsync()
     {
       LstUsers = await _db_context.Users.ToListAsync();
+      ViewData["Title"] = "▷用户列表◁-";
     }
   }
 }
