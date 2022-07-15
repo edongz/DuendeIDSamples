@@ -2,3 +2,20 @@
 @model IdentityServerAspNetIdentity.Pages.UserListModel
 @{
 }
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m=>m.LstUsers[0].Name) </th>
+            <th>@Html.DisplayNameFor(m=>m.LstUsers[0].DOB) </th>
+            <th>@Html.DisplayNameFor(m=>m.LstUsers[0].Email) </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model.LstUsers)
+    {
+        <tr>
+            <td>@Html.DisplayFor(i=>item.Name) </td>
+            <td>@Html.DisplayFor(i=>item.DOB) </td>
+            <td>@Html.DisplayFor(i=>item.Email) </td>
+        </tr>
+    }
+</table>
