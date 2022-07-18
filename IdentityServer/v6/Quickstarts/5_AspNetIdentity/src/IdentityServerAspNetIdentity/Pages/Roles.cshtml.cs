@@ -25,5 +25,16 @@ namespace IdentityServerAspNetIdentity.Pages
     {
       ReturnUrl = returnUrl;
     }
+
+    public IActionResult OnPost(string returnUrl = null)
+    {
+      InputRole.NormalizedName = InputRole.Name;
+      _db_context.Roles.Add(InputRole);
+      _db_context.SaveChanges();
+      return LocalRedirect(Url.Content("~/"));
+    }
+
+
+
   }
 }
