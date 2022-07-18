@@ -1,4 +1,5 @@
 ﻿using IdentityServerAspNetIdentity.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -14,9 +15,15 @@ namespace IdentityServerAspNetIdentity.Pages
       _db_context = db_context;
       _logger = logger;
     }
+    // Remaining API warnings ommited.
+    public string ReturnUrl { get; set; }
 
-    public void OnGet()
+    [BindProperty]
+    public IdentityRole InputRole { get; set; }
+
+    public void OnGet(string returnUrl = null)
     {
+      ReturnUrl = returnUrl;
     }
   }
 }
