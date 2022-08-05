@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿// Copyright (c) Duende Software. All rights reserved.
 // See LICENSE in the project root for license information.
 using Microsoft.AspNetCore.Identity;
@@ -19,3 +20,18 @@ public class ApplicationUser : IdentityUser
   [EmailAddress]
   public override String Email { get; set; }
 }
+=======
+﻿// Copyright (c) Duende Software. All rights reserved.
+// See LICENSE in the project root for license information.
+
+
+using Microsoft.AspNetCore.Identity;
+
+namespace IdentityServerHost.Models;
+
+// Add profile data for application users by adding properties to the ApplicationUser class
+public class ApplicationUser : IdentityUser
+{
+    public string FavoriteColor { get; set; }
+}
+>>>>>>> 8fc72fb6f4a352a63567529630f4f5f49087fd7e
