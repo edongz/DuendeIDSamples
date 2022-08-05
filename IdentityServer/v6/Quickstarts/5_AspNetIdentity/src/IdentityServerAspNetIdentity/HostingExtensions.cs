@@ -104,3 +104,4 @@ internal static class HostingExtensions
 
     return app;
   }
+}

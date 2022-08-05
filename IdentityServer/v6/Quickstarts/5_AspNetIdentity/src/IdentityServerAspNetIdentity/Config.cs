@@ -1,4 +1,4 @@
-using Duende.IdentityServer;
+﻿using Duende.IdentityServer;
 using Duende.IdentityServer.Models;
 
 namespace IdentityServerAspNetIdentity;
@@ -46,7 +46,6 @@ public static class Config
 
                 // where to redirect to after logout
                 PostLogoutRedirectUris = { "https://localhost:5002/signout-callback-oidc" },
-
                 AllowOfflineAccess = true,
 
                 AllowedScopes = new List<string>
