@@ -14,7 +14,7 @@ namespace IdentityServerAspNetIdentity.Pages
       _db_context = db_context;
     }
 
-    public IList<ApplicationUser>? LstUsers { get; set; }
+    public IList<ApplicationUser> LstUsers { get; set; }
 
     //打开时获取页面数据
     public async Task OnGetAsync()
