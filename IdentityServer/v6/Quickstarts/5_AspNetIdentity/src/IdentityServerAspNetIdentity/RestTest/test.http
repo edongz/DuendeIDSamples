@@ -1,6 +1,8 @@
-@MyHost=https://btlct.luchengtong.com:6000/
+@MyHost=https://localhost:5001/
+# https://btlct.luchengtong.com:6000/
 # http://192.168.9.172:51005/
 # https://localhost:5001/
+
 ###
 {{MyHost}}.well-known/openid-configuration
 
