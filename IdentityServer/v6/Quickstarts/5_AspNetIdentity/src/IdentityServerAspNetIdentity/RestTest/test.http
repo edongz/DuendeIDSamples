@@ -1,0 +1,128 @@
+@MyHost=https://btlct.luchengtong.com:6000/
+# http://192.168.9.172:51005/
+# https://localhost:5001/
+###
+{{MyHost}}.well-known/openid-configuration
+
+###
+post {{MyHost}}connect/token
+Content-Type: application/x-www-form-urlencoded;charset=utf-8
+
+grant_type=password&client_id=client&client_secret=secret&username=bob&password=bob
+
+###
+post {{MyHost}}connect/token
+Content-Type: application/x-www-form-urlencoded;charset=utf-8
+
+grant_type=password&client_id=client&client_secret=secret&username=bob&password=bob
+#&scope=api1
+
+###
+post {{MyHost}}connect/token
+Content-Type: application/x-www-form-urlencoded;charset=utf-8
+
+grant_type=client_credentials&client_id=client&client_secret=secret
+#&scope=lct.api2
+#密码   btlct
+#client_credentials模式里 有ClientClaims！！
+###
+@access_token =eyJhbGciOiJSUzI1NiIsImtpZCI6IjM5MkQ2RDlFQ0U1ODlGRDNFQTA3MzU4ODAxRDUwMjUwQzFCNTgxMDlSUzI1NiIsIng1dCI6Ik9TMXRuczVZbjlQcUJ6V0lBZFVDVU1HMWdRayIsInR5cCI6ImF0K2p3dCJ9.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo1MDAxIiwibmJmIjoxNjU2NDg5ODE2LCJpYXQiOjE2NTY0ODk4MTYsImV4cCI6MTY1NjQ5MDExNiwic2NvcGUiOlsib3BlbmlkIiwicHJvZmlsZSIsIldlYkFwcCIsImFkZHJlc3MiLCJvZmZsaW5lX2FjY2VzcyJdLCJhbXIiOlsicHdkIl0sImNsaWVudF9pZCI6IndlYiIsInN1YiI6IjIiLCJhdXRoX3RpbWUiOjE2NTY0ODk4MTUsImlkcCI6ImxvY2FsIiwic2lkIjoiOTgzQzhCNENBRTVBNEFDMjBFNTU4MzlCQTI0MEY5Q0MiLCJqdGkiOiJFQTdDOTZDQUJBRDA5MUUwMTY5RjlBNkIxRkY0MDVCQyJ9.BnNOfQaj_SdHsKPE_440o9G0m8AqDpXZXPEg-M2QqE59BGGunKumzDM1kaZIfFN3BoBRrwN0sx-c-tqcjGX1SnPqvKpsw9cLEZUw3WUg_g7Lm4oPD5G_CHpLlGo094iXuSavMgHpsz_uYEF1RPDqbMe30cAcRg3licrcniFaLtBt-s6R6VLbMKcK1687wlPRTxl2qqCjtLls_6HWzd0MZgXLjkujAtCmPcFuBUsViInLXwc8XQvtS0iqSqksnIR2ZmJDN-C5yHkEw_PcW0wDOleHTFWdKtGBu_kUsPuh4LCkRWMwBueqOQWglI2CL6r9UMJNksJbeoEMbjgQllPNTQ
+###
+https://localhost:6001/identity
+Authorization: Bearer {{access_token}}
+
+###
+https://localhost:6001/api/Delixi?MaterialCode=HX618S00000
+Authorization: Bearer {{access_token}}
+
+###
+https://localhost:5002/api/TestBearer/WhoamI
+Authorization: Bearer {{access_token}}
+
+###
+https://localhost:5002/api/TestBearer/FindMaterialCode?MaterialCode=中文C123
+Authorization: Bearer {{access_token}}
+###
+http://localhost:5071/WeatherForecast
+Authorization: Bearer {{access_token}}
+
+
+###authorization_code 模式
+post {{MyHost}}connect/authorize
+Content-Type: application/x-www-form-urlencoded;charset=utf-8
+
+client_id=web&redirect_uri=https://localhost:5002/signin-oidc&response_type=code&scope=api1
+
+###
+{{MyHost}}connect/authorize?client_id=web&redirect_uri=https://localhost:5002/signin-oidc&response_type=code&scope=lct.api1&state=abc&nonce=xyz
+
+{{MyHost}}connect/authorize?client_id=web&redirect_uri=http://bjtime.cn&response_type=token&scope=lct.api1
+
+{{MyHost}}connect/authorize?client_id=web&redirect_uri=http://bjtime.cn&response_type=code&scope=lct.api1
+# http://bjtime.cn/?code=4A33DB230D5A6DE5A3E42636C876F564F9945648882AC3D14117EF3CD8C60AF0-1&scope=lct.api1&iss=https%3A%2F%2Flocalhost%3A5001iss=https%3A%2F%2Flocalhost%3A5001
+@code=4293ECFF4A00F01C94085F6BFDB775EC5BE1BE268DC83B946CACC71DF9373539
+###
+post {{MyHost}}connect/token
+Content-Type: application/x-www-form-urlencoded;charset=utf-8
+
+client_id=web&client_secret=secret&redirect_uri=http://bjtime.cn&grant_type=authorization_code&scope=lct.api1&code={{code}}
+
+###
+
+#==================================================
+#grant_type=password
+{
+  "iss": "https://localhost:5001",
+  "nbf": 1653815931,
+  "iat": 1653815931,
+  "exp": 1653816171,
+  "aud": "urn:lctAdmin",
+  "scope": [
+    "lct.api1",
+    "offline_access"
+  ],
+  "amr": [
+    "pwd"
+  ],
+  "client_id": "client",
+  "client_company": "BTLCT",
+  "sub": "1",
+  "auth_time": 1653815931,
+  "idp": "local",
+  "jti": "B93BB7DA29B27FD08F21F63EB4431569"
+}
+
+{
+  "iss": "https://localhost:5001",
+  "nbf": 1653815984,
+  "iat": 1653815984,
+  "exp": 1653816224,
+  "aud": "urn:lctAdmin",
+  "scope": [
+    "lct.api1"
+  ],
+  "client_id": "client",
+  "client_company": "BTLCT",
+  "jti": "0DD6CA852D591DB31A9DDB9A0ADFEA13"
+}
+
+#=================================================================
+# D:\LCTProg2\IDServer6\IdentityServer\hosts\Configuration\ClientsWeb.cs
+# code换token通过 
+#=================================================================
+@redirect_uri=https://localhost:44302/signin-oid
+###
+{{MyHost}}connect/authorize?client_id=mvc.code&redirect_uri=http://bjtime.cn&response_type=code&scope=resource1.scope1
+
+@code=F762945E6870025C5FEA0D967663156BDCCA29CEAC693B1E591B916139AE1AD8-1
+###
+post {{MyHost}}connect/token
+Content-Type: application/x-www-form-urlencoded;charset=utf-8
+
+client_id=mvc.code&client_secret=secret&redirect_uri=http://bjtime.cn&grant_type=authorization_code&scope=resource1.scope1&code={{code}}
+
+###
+post {{MyHost}}connect/token
+Content-Type: application/x-www-form-urlencoded;charset=utf-8
+
+grant_type=password&client_id=roclient&client_secret=secret&username=alice&password=alice

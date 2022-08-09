@@ -1,0 +1,136 @@
+[09:53:59 INF] Starting up
+[09:54:01 Information] Duende.IdentityServer.Startup
+Starting Duende IdentityServer version 6.0.0-preview.5+c2ba7235533747b411b5ecc67109fe7611b8d1ec (.NET 6.0.5)
+
+[09:54:01 Warning] Duende.IdentityServer
+You do not have a valid license key for Duende IdentityServer. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please start a conversation with us: https://duendesoftware.com/contact
+
+[09:54:01 Information] Duende.IdentityServer.Startup
+Using the default authentication scheme idsrv for IdentityServer
+
+[09:54:01 Debug] Duende.IdentityServer.Startup
+Using idsrv as default ASP.NET Core scheme for authentication
+
+[09:54:01 Debug] Duende.IdentityServer.Startup
+Using idsrv as default ASP.NET Core scheme for sign-in
+
+[09:54:01 Debug] Duende.IdentityServer.Startup
+Using idsrv as default ASP.NET Core scheme for sign-out
+
+[09:54:01 Debug] Duende.IdentityServer.Startup
+Using idsrv as default ASP.NET Core scheme for challenge
+
+[09:54:01 Debug] Duende.IdentityServer.Startup
+Using idsrv as default ASP.NET Core scheme for forbid
+
+[09:54:02 Information] Microsoft.Hosting.Lifetime
+Now listening on: https://localhost:5001
+
+[09:54:02 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[09:54:02 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[09:54:02 Information] Microsoft.Hosting.Lifetime
+Content root path: D:\LCTProg2\IDServer6\Samples\IdentityServer\v6\Quickstarts\4_EntityFramework\src\IdentityServer\
+
+[09:59:06 Debug] Duende.IdentityServer.Startup
+Login Url: /Account/Login
+
+[09:59:06 Debug] Duende.IdentityServer.Startup
+Login Return Url Parameter: ReturnUrl
+
+[09:59:06 Debug] Duende.IdentityServer.Startup
+Logout Url: /Account/Logout
+
+[09:59:06 Debug] Duende.IdentityServer.Startup
+ConsentUrl Url: /consent
+
+[09:59:06 Debug] Duende.IdentityServer.Startup
+Consent Return Url Parameter: returnUrl
+
+[09:59:06 Debug] Duende.IdentityServer.Startup
+Error Url: /home/error
+
+[09:59:06 Debug] Duende.IdentityServer.Startup
+Error Id Parameter: errorId
+
+[09:59:06 Debug] Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationHandler
+AuthenticationScheme: idsrv was not authenticated.
+
+[09:59:06 Debug] Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationHandler
+AuthenticationScheme: idsrv was not authenticated.
+
+[09:59:06 Debug] Duende.IdentityServer.Hosting.EndpointRouter
+Request path /connect/token matched to endpoint type Token
+
+[09:59:06 Debug] Duende.IdentityServer.Hosting.EndpointRouter
+Endpoint enabled: Token, successfully created handler: Duende.IdentityServer.Endpoints.TokenEndpoint
+
+[09:59:06 Information] Duende.IdentityServer.Hosting.IdentityServerMiddleware
+Invoking IdentityServer endpoint: Duende.IdentityServer.Endpoints.TokenEndpoint for /connect/token
+
+[09:59:06 Debug] Duende.IdentityServer.Endpoints.TokenEndpoint
+Start token request.
+
+[09:59:06 Debug] Duende.IdentityServer.Validation.ClientSecretValidator
+Start client validation
+
+[09:59:06 Debug] Duende.IdentityServer.Validation.BasicAuthenticationSecretParser
+Start parsing Basic Authentication secret
+
+[09:59:06 Debug] Duende.IdentityServer.Validation.PostBodySecretParser
+Start parsing for secret in post body
+
+[09:59:06 Debug] Duende.IdentityServer.Validation.ISecretsListParser
+Parser found secret: PostBodySecretParser
+
+[09:59:06 Debug] Duende.IdentityServer.Validation.ISecretsListParser
+Secret id found: client
+
+[09:59:08 Debug] Duende.IdentityServer.EntityFramework.Stores.ClientStore
+client found in database: True
+
+[09:59:08 Debug] Duende.IdentityServer.Stores.ValidatingClientStore
+client configuration validation for client client succeeded.
+
+[09:59:08 Debug] Duende.IdentityServer.Validation.ISecretsListValidator
+Secret validator success: HashedSharedSecretValidator
+
+[09:59:08 Debug] Duende.IdentityServer.Validation.ClientSecretValidator
+Client validation success
+
+[09:59:08 Debug] Duende.IdentityServer.Validation.TokenRequestValidator
+Start token request validation
+
+[09:59:08 Debug] Duende.IdentityServer.Validation.TokenRequestValidator
+Start client credentials token request validation
+
+[09:59:08 Debug] Duende.IdentityServer.EntityFramework.Stores.ResourceStore
+Found ["lct.api1"] scopes in database
+
+[09:59:08 Debug] Duende.IdentityServer.EntityFramework.Stores.ResourceStore
+Found [] identity scopes in database
+
+[09:59:08 Debug] Duende.IdentityServer.EntityFramework.Stores.ResourceStore
+Found ["urn:lctAdmin"] API resources in database
+
+[09:59:08 Debug] Duende.IdentityServer.EntityFramework.Stores.ResourceStore
+Found ["lct.api1"] scopes in database
+
+[09:59:08 Debug] Duende.IdentityServer.Validation.TokenRequestValidator
+client credentials token request validation success
+
+[09:59:08 Information] Duende.IdentityServer.Validation.TokenRequestValidator
+Token request validation success, {"ClientId": "client", "ClientName": null, "GrantType": "client_credentials", "Scopes": "lct.api1", "AuthorizationCode": "********", "RefreshToken": "********", "UserName": null, "AuthenticationContextReferenceClasses": null, "Tenant": null, "IdP": null, "Raw": {"grant_type": "client_credentials", "client_id": "client", "client_secret": "***REDACTED***"}, "$type": "TokenRequestValidationLog"}
+
+[09:59:08 Debug] Duende.IdentityServer.Services.DefaultClaimsService
+Getting claims for access token for client: client
+
+[09:59:08 Debug] Duende.IdentityServer.Endpoints.TokenEndpoint
+Token request success.
+
+[09:59:08 Information] Serilog.AspNetCore.RequestLoggingMiddleware
+HTTP POST /connect/token responded 200 in 2256.3937 ms
+
