@@ -35,7 +35,6 @@ namespace Client
       .AddCookie(options =>
       {
         options.Cookie.Name = "mvc";
-
         options.Events.OnSigningOut = async e =>
               {
                 // automatically revoke refresh token at signout time

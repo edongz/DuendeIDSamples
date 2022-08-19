@@ -1,5 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,8 +22,7 @@ builder.Services.AddAuthentication(options =>
       options.ClientId = "mvc.code";
       options.ClientSecret = "secret";
       options.ResponseType = "code";
-
-      options.SaveTokens = true;
+      options.UsePkce = true;
 
       options.Scope.Clear();
       options.Scope.Add("openid");
@@ -33,6 +33,12 @@ builder.Services.AddAuthentication(options =>
       options.ClaimActions.MapUniqueJsonKey("favorite_color", "favorite_color");
 
       options.GetClaimsFromUserInfoEndpoint = true;
+      options.SaveTokens = true;
+      options.TokenValidationParameters = new TokenValidationParameters
+      {
+        NameClaimType = "name",
+        RoleClaimType = "role"
+      };
     })
     .AddJwtBearer("Bearer", options =>
     {

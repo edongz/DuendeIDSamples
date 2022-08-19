@@ -17,7 +17,7 @@ public class ApplicationUser : IdentityUser
 
   [Display(Name = "电子邮件")]
   [EmailAddress]
-  public override String Email { get; set; }
+  public override string Email { get; set; }
 
   public string FavoriteColor { get; set; }
 }

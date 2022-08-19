@@ -62,13 +62,13 @@ internal static class HostingExtensions
         options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
                 sql => sql.MigrationsAssembly(migrationsAssembly));
       })
-        .AddOperationalStore(options =>
-        {
-          options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
-                  sql => sql.MigrationsAssembly(migrationsAssembly));
-        })
-        .AddAspNetIdentity<ApplicationUser>()
-        .AddProfileService<CustomProfileService>();
+      .AddOperationalStore(options =>
+      {
+        options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
+                sql => sql.MigrationsAssembly(migrationsAssembly));
+      })
+      .AddAspNetIdentity<ApplicationUser>()
+      .AddProfileService<CustomProfileService>();
 
     //builder.Services.AddAuthentication()
     //    .AddGoogle(options =>
